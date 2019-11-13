@@ -1,0 +1,69 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #00b7ff;
+}
+
+header {
+  height: 100px;
+  background: black;
+  color: white;
+  margin: 1em;
+}
+
+header img {
+  height: 100%;
+}
+
+.movie {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  background-color: red;
+  margin: 10px 10px;
+  overflow: hidden;
+}
+
+.movie img {
+  width: 320px;
+}
+
+.movie .overview {
+  display: none;
+  position: absolute;
+  color: white;
+  width: 320px;
+  height: 240px;
+  background-color: rgb(86,77,77, 0.6);
+  top: 0;
+  padding-left: 1em;
+}
+
+.movie .overview p {
+  position: absolute;
+  bottom: 0;
+}
+
+.movie:hover .overview {
+  display: block;
+
+}
+
+.titulo {
+  color: white;
+  margin: 20px 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 20px 0px;
+}

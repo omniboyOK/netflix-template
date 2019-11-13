@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <%- include('header') %>
+
+  <div class="titulo">
+    <h1>Titulo</h1>
+  </div>
+  <%- include('list', {movies: movies}) %>
+</body>
+
+</html>
