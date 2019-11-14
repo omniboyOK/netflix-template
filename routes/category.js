@@ -27,10 +27,11 @@ const GENRE_LIST = [
 ];
 
 /* GET home page. */
-router.get("/category/:id", function(req, res, next) {
+router.get("/:id", function(req, res, next) {
   axios
-    .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.query.id}`)
+    .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.params.id}`)
     .then(({ data }) => {
+      console.log(data.results);
       res.render("index", {
         title: "Netflix",
         movies: data.results,

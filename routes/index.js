@@ -32,9 +32,10 @@ router.get("/", function(req, res, next) {
     .get(`${BASE_URL}discover/movie/${API_KEY}`)
     .then(({ data }) => {
       res.render("index", {
-        title: "hola",
+        title: "Netflix",
         movies: data.results,
-        overview: data.results.overview
+        overview: data.results.overview,
+        categories: GENRE_LIST
       });
     })
     .catch(() => {
@@ -43,19 +44,4 @@ router.get("/", function(req, res, next) {
     });
 });
 
-router.get("/:id", function(req, res, next) {
-  axios
-    .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.query.id}`)
-    .then(({ data }) => {
-      console.log(data.results)
-      res.render("index", {
-        title: "Netflix",
-        movies: data.results,
-        overview: data.results.overview
-      });
-    })
-    .catch(() => {
-      console.log("api error");
-    });
-});
 module.exports = router;
