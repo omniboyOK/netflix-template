@@ -27,27 +27,10 @@ const GENRE_LIST = [
 ];
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
-  axios
-    .get(`${BASE_URL}discover/movie/${API_KEY}`)
-    .then(({ data }) => {
-      res.render("index", {
-        title: "hola",
-        movies: data.results,
-        overview: data.results.overview
-      });
-    })
-    .catch(() => {
-      console.log("api error");
-      res.render("index", { title: "Error" });
-    });
-});
-
-router.get("/:id", function(req, res, next) {
+router.get("/category/:id", function(req, res, next) {
   axios
     .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.query.id}`)
     .then(({ data }) => {
-      console.log(data.results)
       res.render("index", {
         title: "Netflix",
         movies: data.results,
@@ -58,4 +41,5 @@ router.get("/:id", function(req, res, next) {
       console.log("api error");
     });
 });
+
 module.exports = router;

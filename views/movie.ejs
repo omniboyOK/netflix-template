@@ -1,13 +1,12 @@
-<div class="movie">
+<div class="movie" overview="<%= movie.overview %>">
     <img src="http://image.tmdb.org/t/p/original<%= movie.poster_path %>" alt="<%= movie.title %>">
     <div class="overview">
         <h1><%= movie.original_title %></h1>
         <p>
-            <%= movie.vote_average %>
+            Rate: <%= movie.vote_average %>
             <br>
-            <%= movie.release_date %>
+            Release: <%= movie.release_date %>
             <br>
-            <%= movie.genres %>
         </p>
     </div>
 </div>
