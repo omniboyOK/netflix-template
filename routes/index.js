@@ -31,7 +31,23 @@ router.get("/", function(req, res, next) {
   axios
     .get(`${BASE_URL}discover/movie/${API_KEY}`)
     .then(({ data }) => {
-      console.log(data.results);
+      res.render("index", {
+        title: "hola",
+        movies: data.results,
+        overview: data.results.overview
+      });
+    })
+    .catch(() => {
+      console.log("api error");
+      res.render("index", { title: "Error" });
+    });
+});
+
+router.get("/:id", function(req, res, next) {
+  axios
+    .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.query.id}`)
+    .then(({ data }) => {
+      console.log(data.results)
       res.render("index", {
         title: "hola",
         movies: data.results,
@@ -43,8 +59,4 @@ router.get("/", function(req, res, next) {
       res.render("index", { title: "Esta todo mal ameo" });
     });
 });
-
-router.get("/category?id",function(req, res, next) {
-
-})
 module.exports = router;
