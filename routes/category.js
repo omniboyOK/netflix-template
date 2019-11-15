@@ -29,8 +29,7 @@ const GENRE_LIST = [
 
 let filters = {
     api_key: API_KEY,
-    language: 'es-ES',
-    include_adult: 'true'
+    language: 'es-ES'
   }
 
 /* GET home page. */

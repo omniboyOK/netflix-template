@@ -1,9 +1,10 @@
+require('dotenv/config')
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const queryString = require("query-string");
 
-const API_KEY = "dca80b850d66cf214f91989464e232a7";
+const API_KEY = process.env.API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3/";
 const GENRE_LIST = [
   { id: 28, name: "Action" },
