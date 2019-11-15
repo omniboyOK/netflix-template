@@ -46,9 +46,10 @@ router.get("/", function(req, res, next) {
         port: process.env.PORT || "3000"
       });
     })
-    .catch(() => {
+    .catch((err) => {
       console.log("api error");
-      res.render("error", { title: "Error" });
+      console.log(API_KEY)
+      res.render("error", { message: "Error de api", error: err});
     });
 });
 
