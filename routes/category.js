@@ -50,6 +50,7 @@ router.get("/:id", function(req, res, next) {
     })
     .catch(() => {
       console.log("api error");
+      res.render("error", { title: "Error" });
     });
 });
 

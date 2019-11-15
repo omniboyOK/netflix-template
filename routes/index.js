@@ -48,7 +48,7 @@ router.get("/", function(req, res, next) {
     })
     .catch(() => {
       console.log("api error");
-      res.render("index", { title: "Error" });
+      res.render("error", { title: "Error" });
     });
 });
 
