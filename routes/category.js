@@ -39,7 +39,6 @@ router.get("/:id", function(req, res, next) {
   axios
     .get(`${BASE_URL}discover/movie/?${query}`)
     .then(({ data }) => {
-      console.log(data.results);
       res.render("index", {
         title: "Netflix",
         movies: data.results,
@@ -50,6 +49,7 @@ router.get("/:id", function(req, res, next) {
     })
     .catch(() => {
       console.log("api error");
+      res.render("error", { message: "Error de api", error: err});
     });
 });
 

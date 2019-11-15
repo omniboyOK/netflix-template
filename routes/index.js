@@ -48,7 +48,6 @@ router.get("/", function(req, res, next) {
     })
     .catch((err) => {
       console.log("api error");
-      console.log(API_KEY)
       res.render("error", { message: "Error de api", error: err});
     });
 });
