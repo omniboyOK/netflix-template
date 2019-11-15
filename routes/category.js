@@ -44,7 +44,8 @@ router.get("/:id", function(req, res, next) {
         title: "Netflix",
         movies: data.results,
         overview: data.results.overview,
-        categories: GENRE_LIST
+        categories: GENRE_LIST,
+        port: process.env.PORT || "3000"
       });
     })
     .catch(() => {

@@ -1,5 +1,3 @@
-
-  require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,6 +9,9 @@ var usersRouter = require('./routes/users');
 var categoryRouter = require('./routes/category');
 
 var app = express();
+if (app.get('env') == 'development'){
+  require('dotenv').config();
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
