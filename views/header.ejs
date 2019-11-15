@@ -3,9 +3,10 @@
     <div class="dropdown">
         <button class="dropbtn">Categories</button>
         <div class="dropdown-content">
-            <a href="http://localhost:3000/category/27">Horror</a>
-            <a href="http://localhost:3000/category/28">Action</a>
-            <a href="http://localhost:3000/category/35">Comedy</a>
+            
+            <% categories.forEach((category)=> { %>
+                <a href="http://localhost:3000/category/<%= category.id %>"><%= category.name %></a>
+            <% }) %>
         </div>
     </div>
 </header>

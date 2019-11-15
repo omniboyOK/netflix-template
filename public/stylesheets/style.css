@@ -65,23 +65,24 @@ header img {
 /*CSS Para las tarjetas de peliculas*/
 .movie {
   position: relative;
-  width: 320px;
-  height: 240px;
+  width: 200px;
+  height: 300px;
   background-color: red;
   margin: 10px 10px;
   overflow: hidden;
 }
 
 .movie img {
-  width: 320px;
+  width: 200px;
+  height: 300px;
 }
 
 .movie .overview {
   display: none;
   position: absolute;
   color: white;
-  width: 320px;
-  height: 240px;
+  width: 200px;
+  height: 300px;
   background-color: rgb(86, 77, 77, 0.6);
   top: 0;
   padding-left: 1em;

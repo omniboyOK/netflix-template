@@ -1,8 +1,9 @@
-var express = require("express");
-var router = express.Router();
-var axios = require("axios");
+const express = require("express");
+const router = express.Router();
+const axios = require("axios");
+const queryString = require("query-string");
 
-const API_KEY = "?api_key=dca80b850d66cf214f91989464e232a7";
+const API_KEY = process.env.API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3/";
 const GENRE_LIST = [
   { id: 28, name: "Action" },
@@ -26,16 +27,25 @@ const GENRE_LIST = [
   { id: 37, name: "Western" }
 ];
 
+let filters = {
+    api_key: API_KEY,
+    language: 'es-ES',
+    include_adult: 'true'
+  }
+
 /* GET home page. */
 router.get("/:id", function(req, res, next) {
+  filters.with_genres = req.params.id;
+  let query = queryString.stringify(filters);
   axios
-    .get(`${BASE_URL}discover/movie/${API_KEY}&with_genres=${req.params.id}`)
+    .get(`${BASE_URL}discover/movie/?${query}`)
     .then(({ data }) => {
       console.log(data.results);
       res.render("index", {
         title: "Netflix",
         movies: data.results,
-        overview: data.results.overview
+        overview: data.results.overview,
+        categories: GENRE_LIST
       });
     })
     .catch(() => {
