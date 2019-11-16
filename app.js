@@ -1,5 +1,5 @@
 var env = process.env.NODE_ENV || 'development';
-if(env === "production"){
+if(env === "development"){
   require('dotenv').config();
 }
 var createError = require('http-errors');
