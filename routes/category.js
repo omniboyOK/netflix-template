@@ -44,7 +44,7 @@ router.get("/:id", function(req, res, next) {
         movies: data.results,
         overview: data.results.overview,
         categories: GENRE_LIST,
-        port: process.env.PORT || "3000"
+        port: process.env.PORT || "5000"
       });
     })
     .catch(() => {
