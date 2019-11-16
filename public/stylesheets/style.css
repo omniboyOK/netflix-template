@@ -55,7 +55,10 @@ header {
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 400px;
 }
 
 header img {
@@ -113,6 +116,26 @@ header img {
   margin: 20px 0px;
 }
 
+/* Preview*/
+
+.preview {
+  display: none;
+  height: 450px;
+  background-color: grey;
+}
+
+#left-preview-column {
+  position: relative;
+  margin: 0;
+  width: 50%;
+}
+
+#right-preview-column {
+  position: relative;
+  margin: 0;
+  width: 50%;
+}
+
 /*Animaciones*/
 
 @keyframes fadeIn {
@@ -121,5 +144,14 @@ header img {
   }
   100% {
     opacity: 100;
+  }
+}
+
+@keyframes showPreview {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 450px;
   }
 }

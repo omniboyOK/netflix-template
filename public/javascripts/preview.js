@@ -1,1 +1,0 @@
-const previewBanner = document.getElementById('previewBanner');

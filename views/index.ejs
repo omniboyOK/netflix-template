@@ -8,12 +8,35 @@
 </head>
 
 <body>
-  <%- include('header', {categories: categories, host: host}) %>
+  <%- include('header', {}) %>
+
+  <div class="dropdown">
+    <button class="dropbtn">Categorias</button>
+    <div class="dropdown-content">
+
+      <% categories.forEach((category)=> { %>
+      <a href="<%= host %>/category/<%= category.id %>"><%= category.name %></a>
+      <% }) %>
+    </div>
+  </div>
+
+  <div id="preview-banner">
+    <div id="left-preview-column">
+      <div class="preview-background">
+        <img src="" alt="">
+      </div>
+    </div>
+    <div id="right-preview-column">
+
+    </div>
+  </div>
 
   <div class="titulo">
-    <h1>Peliculas</h1>
+    <h1><%= lista %></h1>
   </div>
   <%- include('list', {movies: movies}) %>
+
+  <script src="/javascripts/preview.js"></script>
 </body>
 
 </html>
