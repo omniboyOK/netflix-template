@@ -5,7 +5,7 @@
         <div class="dropdown-content">
             
             <% categories.forEach((category)=> { %>
-                <a href="http://localhost:<%= port %>/category/<%= category.id %>"><%= category.name %></a>
+                <a href="<%= host %>/category/<%= category.id %>"><%= category.name %></a>
             <% }) %>
         </div>
     </div>
