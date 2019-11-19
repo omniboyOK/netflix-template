@@ -45,7 +45,7 @@ router.get("/", function(req, res, next) {
         categories: GENRE_LIST,
         port: process.env.PORT || "5000",
         host: process.env.HOST,
-        lista: "Categorias",
+        lista: "Novedades",
         pagination: {
           page: data.page ? data.page : 1,
           next_page: data.page + 1,
@@ -78,7 +78,7 @@ router.get("/:page", function(req, res, next) {
         categories: GENRE_LIST,
         port: process.env.PORT || "5000",
         host: process.env.HOST,
-        lista: "Categorias",
+        lista: "Novedades",
         pagination: {
           page: data.page ? data.page : 1,
           next_page: data.page + 1,
