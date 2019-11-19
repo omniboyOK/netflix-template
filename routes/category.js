@@ -28,15 +28,15 @@ const GENRE_LIST = [
 ];
 
 let filters = {
-    api_key: API_KEY,
-    language: 'es-ES'
-  }
+  api_key: API_KEY,
+  language: "es-ES"
+};
 
 router.get("/:id", function(req, res, next) {
   // El titulo de la lista sera el nombre del genero que coincida con el id enviado
-  let category_name = GENRE_LIST.find((element)=>{
-    return req.params.id == element.id
-  })
+  let category_name = GENRE_LIST.find(element => {
+    return req.params.id == element.id;
+  });
 
   //agregamos el filtro por genero a nuestro filtro de querys
   filters.with_genres = req.params.id;
@@ -51,12 +51,60 @@ router.get("/:id", function(req, res, next) {
         categories: GENRE_LIST,
         port: process.env.PORT || "5000",
         host: process.env.HOST,
-        lista: category_name.name
+        lista: category_name.name,
+        pagination: {
+          page: data.page,
+          next_page: data.page + 1,
+          previous_page: data.page > 1 ? data.page - 1 : 0
+        },
+        previous: "/category/" + req.params.id + "/" + (data.page - 1),
+        next: "/category/" + req.params.id + "/" + (data.page + 1)
       });
     })
-    .catch(() => {
+    .catch(err => {
       console.log("api error");
-      res.render("error", { message: "Error de api", error: err});
+      res.render("error", { message: "Error de api", error: err });
+    });
+});
+
+router.get("/:id/:page", function(req, res, next) {
+  if (req.params.page && !isNaN(req.params.page) && req.params.page < 1000) {
+    filters.page = req.params.page;
+  } else {
+    filters.page = 1;
+  }
+  // El titulo de la lista sera el nombre del genero que coincida con el id enviado
+  let category_name = GENRE_LIST.find(element => {
+    return req.params.id == element.id;
+  });
+
+  //agregamos el filtro por genero a nuestro filtro de querys
+  filters.with_genres = req.params.id;
+  let query = queryString.stringify(filters);
+  axios
+    .get(`${BASE_URL}discover/movie/?${query}`)
+    .then(({ data }) => {
+      console.log(data);
+      res.render("index", {
+        title: "Netflix",
+        movies: data.results,
+        overview: data.results.overview,
+        categories: GENRE_LIST,
+        port: process.env.PORT || "5000",
+        host: process.env.HOST,
+        lista: category_name.name,
+        pagination: {
+          page: data.page,
+          next_page: data.page + 1,
+          previous_page: data.page > 1 ? data.page - 1 : 0
+        },
+        previous: "/category/" + req.params.id + "/" + (data.page - 1),
+        next: "/category/" + req.params.id + "/" + (data.page + 1)
+      });
+    })
+    .catch(err => {
+      console.log("api error");
+      res.render("error", { message: "Error de api", error: err });
     });
 });
 

@@ -16,7 +16,8 @@ header {
   height: 100px;
   background: black;
   color: white;
-  margin: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
 }
 
 /*Menu despegable*/
@@ -70,7 +71,6 @@ header img {
   position: relative;
   width: 200px;
   height: 300px;
-  background-color: red;
   margin: 10px 10px;
   overflow: hidden;
 }
@@ -134,6 +134,43 @@ header img {
   position: relative;
   margin: 0;
   width: 50%;
+}
+
+/*Paginacion*/
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1em;
+}
+
+.pagination a {
+  text-decoration: none;
+}
+
+.pagination a p{
+  border: 1px solid white;
+}
+
+.pagination a:hover p {
+  background-color: #ddd;
+  border-color: black;
+  color: black;
+}
+
+.pagination p {
+  width: 1em;
+  height: 1em;
+  color: white;
+  font-size: 2em;
+  margin: 1em;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.pagination p[page="0"] {
+  display: none;
 }
 
 /*Animaciones*/

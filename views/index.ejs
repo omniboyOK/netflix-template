@@ -5,6 +5,8 @@
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="shortcut icon" href="/netflix_94400.ico" type="image/x-icon">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,6 +37,12 @@
     <h1><%= lista %></h1>
   </div>
   <%- include('list', {movies: movies}) %>
+
+  <div class="pagination">
+    <a href="<%= host %><%= previous %>"><p page="<%= pagination.previous_page %>"><%= pagination.previous_page %></p></a>
+    <p><%= pagination.page %></p>
+    <a href="<%= host %><%= next %>"><p><%= pagination.next_page %></p></a>
+  </div>
 
   <script src="/javascripts/preview.js"></script>
 </body>

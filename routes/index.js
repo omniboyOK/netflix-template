@@ -29,8 +29,8 @@ const GENRE_LIST = [
 
 let filters = {
   api_key: API_KEY,
-  language: 'es-ES'
-}
+  language: "es-ES"
+};
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -45,12 +45,52 @@ router.get("/", function(req, res, next) {
         categories: GENRE_LIST,
         port: process.env.PORT || "5000",
         host: process.env.HOST,
-        lista: "Categorias"
+        lista: "Categorias",
+        pagination: {
+          page: data.page,
+          next_page: data.page + 1,
+          previous_page: data.page > 1 ? data.page - 1 : 0
+        },
+        previous: "/" + (data.page - 1),
+        next: "/" + (data.page + 1)
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log("api error");
-      res.render("error", { message: "Error de api", error: err});
+      res.render("error", { message: "Error de api", error: err });
+    });
+});
+
+router.get("/:page", function(req, res, next) {
+  if (req.params.page && !isNaN(req.params.page) && req.params.page < 1000) {
+    filters.page = req.params.page;
+  } else {
+    filters.page = 1;
+  }
+  const query = queryString.stringify(filters);
+  axios
+    .get(`${BASE_URL}discover/movie/?${query}`)
+    .then(({ data }) => {
+      res.render("index", {
+        title: "Netflix",
+        movies: data.results,
+        overview: data.results.overview,
+        categories: GENRE_LIST,
+        port: process.env.PORT || "5000",
+        host: process.env.HOST,
+        lista: "Categorias",
+        pagination: {
+          page: data.page,
+          next_page: data.page + 1,
+          previous_page: data.page > 1 ? data.page - 1 : 0
+        },
+        previous: "/" + (data.page - 1),
+        next: "/" + (data.page + 1)
+      });
+    })
+    .catch(err => {
+      console.log("api error");
+      res.render("error", { message: "Error de api", error: err });
     });
 });
 
