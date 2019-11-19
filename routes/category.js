@@ -53,12 +53,12 @@ router.get("/:id", function(req, res, next) {
         host: process.env.HOST,
         lista: category_name.name,
         pagination: {
-          page: data.page,
+          page: data.page ? data.page : 1,
           next_page: data.page + 1,
           previous_page: data.page > 1 ? data.page - 1 : 0
         },
-        previous: "/category/" + req.params.id + "/" + (data.page - 1),
-        next: "/category/" + req.params.id + "/" + (data.page + 1)
+        previous: "/category/" + req.params.id + "/" + (data.page-1),
+        next: "/category/" + req.params.id + "/" + (data.page+1)
       });
     })
     .catch(err => {
@@ -94,7 +94,7 @@ router.get("/:id/:page", function(req, res, next) {
         host: process.env.HOST,
         lista: category_name.name,
         pagination: {
-          page: data.page,
+          page: data.page ? data.page : 1,
           next_page: data.page + 1,
           previous_page: data.page > 1 ? data.page - 1 : 0
         },

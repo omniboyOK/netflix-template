@@ -47,7 +47,7 @@ router.get("/", function(req, res, next) {
         host: process.env.HOST,
         lista: "Categorias",
         pagination: {
-          page: data.page,
+          page: data.page ? data.page : 1,
           next_page: data.page + 1,
           previous_page: data.page > 1 ? data.page - 1 : 0
         },
@@ -80,7 +80,7 @@ router.get("/:page", function(req, res, next) {
         host: process.env.HOST,
         lista: "Categorias",
         pagination: {
-          page: data.page,
+          page: data.page ? data.page : 1,
           next_page: data.page + 1,
           previous_page: data.page > 1 ? data.page - 1 : 0
         },
